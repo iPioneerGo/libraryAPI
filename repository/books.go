@@ -5,27 +5,27 @@ import (
 	"sort"
 )
 
-type Library interface {
+type Books interface {
 	GetBooks() ([]entity.Book, error)
 	SetBooks(newLibrary []entity.Book) error
 }
 
-type library struct {
+type books struct {
 	books []entity.Book
 }
 
-func (u *library) GetBooks() ([]entity.Book, error) {
+func (u *books) GetBooks() ([]entity.Book, error) {
 	sort.Sort(u)
 	return u.books, nil
 }
 
-func (u *library) SetBooks(newLibrary []entity.Book) error {
+func (u *books) SetBooks(newLibrary []entity.Book) error {
 	u.books = newLibrary
 	return nil
 }
 
-func NewLibrary() Library {
-	return &library{books: []entity.Book{
+func NewLibrary() Books {
+	return &books{books: []entity.Book{
 		{
 			Name:   "Rage",
 			Author: "Stephen King",
@@ -44,14 +44,14 @@ func NewLibrary() Library {
 	}}
 }
 
-func (l library) Len() int {
+func (l books) Len() int {
 	return len(l.books)
 }
-func (l library) Less(i, j int) bool {
+func (l books) Less(i, j int) bool {
 	iYear := l.books[i].Year
 	jYear := l.books[j].Year
 	return iYear < jYear
 }
-func (l library) Swap(i, j int) {
+func (l books) Swap(i, j int) {
 	l.books[i], l.books[j] = l.books[j], l.books[i]
 }

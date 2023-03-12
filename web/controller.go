@@ -6,7 +6,7 @@ import (
 )
 
 type Controller struct {
-	bookLibrary repository.Library
+	bookLibrary repository.Books
 }
 
 func (c *Controller) GetBooks() ([]entity.Book, error) {

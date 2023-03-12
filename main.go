@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-var books repository.Library
+var books repository.Books
 
 func getBooks(c *gin.Context) {
 	bookList, err := books.GetBooks()
